@@ -95,7 +95,7 @@ exports.getTeachers = catchAsyncError(async (req, res, next) => {
       Single Teacher (/api/v1/teacher/:id) (req : GET)
    ============================================================== */
    exports.getTeacher = catchAsyncError(async (req, res, next) => {
-    const teacher = await Teacher.findById(req.params.id);
+    const teacher = await Teacher.findById(req.params.id).populate({path:"research"}).populate({path:"status"});
   
     res.status(200).json({
       success: true,

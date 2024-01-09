@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const getTeachers = () => async (dispatch) => {
+export const getTeachers = (ser) => async (dispatch) => {
   try {
     dispatch({ type: "GetStudentTeacherRequest" });
 
-    const { data } = await axios.get("/api/v1/get/teachers");
+    const { data } = await axios.get(`/api/v1/get/teachers?keyword=${ser}`);
     dispatch({ type: "GetStudentTeacherSuccess", payload: data.teachers });
   } catch (err) {
     dispatch({

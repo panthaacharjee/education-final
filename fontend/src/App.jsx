@@ -39,6 +39,7 @@ import Status from "./pages/TeacherAccess/Status";
 import Research from "./pages/TeacherAccess/Research";
 import TeacherRoutine from "./pages/TeacherAccess/Routine"
 import UpdateRoutine from "./pages/AdminAccess/UpdateRoutine";
+import Profile from "./pages/TeacherAccess/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -299,6 +300,16 @@ function App() {
             <ProtectedRoute>
               <RoleRoute role="Teacher">
                 <UpdateProfileTeacher />
+              </RoleRoute>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/teacher/me/profile"
+          element={
+            <ProtectedRoute>
+              <RoleRoute role="Teacher">
+                <Profile />
               </RoleRoute>
             </ProtectedRoute>
           }

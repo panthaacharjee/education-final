@@ -11,9 +11,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       return <AdminSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />;
     } else if (user.role === "Teacher") {
       return <TeacherSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />;
-    } else if (user.role === "Student") {
-      return <StudentSidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />;
-    }
+    } 
   }
 };
 

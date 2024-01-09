@@ -11,7 +11,7 @@ import {Link} from "react-router-dom"
 
 const Routine = () => {
   const dispatch = useDispatch();
-  const { loading, routines } = useSelector((state) => state.getStudentTeacher);
+  const { eloading, routines } = useSelector((state) => state.getStudentTeacher);
 
   const [section, setSection] = useState();
   const [dept, setDept] = useState();
@@ -75,8 +75,7 @@ const Routine = () => {
   }
   //   useEffect(() => {}, []);
   return (
-    <div className="px-12 pb-5 pt-20 flex justify-center">
-      <div className="w-6/12 rounded-2xl">
+    <div className="">
         <div className="px-5 py-3 bg-emerald-100">
           <p className="mt-2 font-medium text-emerald-700 mb-1">
             Select A Department
@@ -112,7 +111,7 @@ const Routine = () => {
             onClick={handleSubmit}
             className="w-full px-3 py-2 bg-emerald-700 text-white  mt-4"
           >
-            {loading ? <Loading /> : "Find your Schedule"}
+            {eloading ? <Loading /> : "Find your Schedule"}
           </button>
         </div>
         {routineDataShow && routines && (
@@ -160,7 +159,6 @@ const Routine = () => {
           </div>
         )}
       </div>
-    </div>
   );
 };
 

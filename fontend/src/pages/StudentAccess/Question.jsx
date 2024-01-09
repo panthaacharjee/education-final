@@ -74,7 +74,7 @@ const Question = () => {
                         style={{ width: "99%" }}
                       >
                         <img
-                          src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w600/2023/10/free-images.jpg"
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/AcademicBuildingpart1.jpg/250px-AcademicBuildingpart1.jpg"
                           className="h-40 w-full"
                         />
                         <div className="mt-2">

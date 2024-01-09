@@ -5,20 +5,15 @@ class ApiFetaures {
   }
 
   // Search Option
-  search(props) {
+  search() {
     const keyword = this.queryStr.keyword
-      ? props === "name"
-        ? {
+      ? {
             name: {
               $regex: this.queryStr.keyword,
               $options: "i",
             },
           }
-        : {
-            id: {
-              $regex: this.queryStr.keyword,
-            },
-          }
+       
       : {};
 
     this.query = this.query.find({ ...keyword });

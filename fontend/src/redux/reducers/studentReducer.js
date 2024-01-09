@@ -39,14 +39,14 @@ export const studentReducer = createReducer(initialState, {
   },
 
   GetStudentRoutineRequest: (state) => {
-    state.loading = true;
+    state.eloading = true;
   },
   GetStudentRoutineSuccess: (state, action) => {
-    state.loading = false;
+    state.eloading = false;
     state.routines = action.payload;
   },
   GetStudentRoutineFail: (state, action) => {
-    state.loading = false;
+    state.eloading = false;
     state.error = action.payload;
   },
 

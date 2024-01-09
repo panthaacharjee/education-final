@@ -21,7 +21,7 @@ const StudentDashboard = () => {
     dispatch(getTeachers(ser))
   }
   useEffect(() => {
-    dispatch(getTeachers());
+    dispatch(getTeachers(" "));
   }, []);
   return (
     <div className="px-12 pt-20 ">

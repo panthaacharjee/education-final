@@ -15,8 +15,7 @@ const sendToken = require("../utils/jwtToken")
        All Teachers (/api/v1/get/teachers) (req : get)
    =================================================== */
 exports.getAllTeacher = catchAsyncError(async (req, res, next) => {
-  const apifeatures = new ApiFetaures(Teacher.find(), req.query)
-    .search()
+  let apifeatures = new ApiFetaures(Teacher.find(), req.query).search()
   const teachers = await apifeatures.query;
 
   res.status(200).json({

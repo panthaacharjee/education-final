@@ -201,6 +201,23 @@ export const deleteStudent = (id) => async (dispatch) => {
   }
 };
 
+
+export const deleteQuestion = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "DeleteQuestionRequest" });
+
+    const { data } = await axios.delete(
+      `/api/v1/delete/question/${id}`
+    );
+    dispatch({ type: "DeleteQuestionSuccess", payload: data.message });
+  } catch (err) {
+    dispatch({
+      type: "DeleteQuestionFail",
+      payload: err.response.data.message,
+    });
+  }
+};
+
 //Clearing Errors
 export const clearError = () => async (dispatch) => {
   dispatch({ type: "ClearErrors" });

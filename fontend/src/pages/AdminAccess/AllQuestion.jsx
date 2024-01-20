@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getQuestions } from "../../redux/actions/adminAction"
+import { deleteQuestion, getQuestions } from "../../redux/actions/adminAction"
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FaDownload } from "react-icons/fa6";
@@ -8,7 +8,6 @@ import { FaDownload } from "react-icons/fa6";
 const AllQuestion = () => {
     const dispatch = useDispatch()
     const {questions, loading} = useSelector(state=>state.adminRoutine)
-    console.log(questions)
     const allDept = new Set(questions && questions.map((val) => val.semester));
   const finalDept = [...allDept];
   console.log(questions);
@@ -18,6 +17,11 @@ const AllQuestion = () => {
   const handleSubmit = () => {
     dispatch(getQuestions(qry));
   };
+
+  const handleDelete =(id)=>{
+    dispatch(deleteQuestion(id))
+  }
+
   useEffect(() => {
     dispatch(getQuestions(qry, category));
   }, [category]);
@@ -79,7 +83,7 @@ const AllQuestion = () => {
                           className="h-40 w-full"
                         />
                         <div className="mt-2">
-                          <p className="font-semibold text-sm">{val.title}</p>
+                          <p className="font-semibold text-xs">{val.title}</p>
                           <p className="text-xs">
                             {val.dept ? val.dept : "Enter a Department"}
                           </p>
@@ -87,6 +91,7 @@ const AllQuestion = () => {
                         <Link to={val.image && val.image.url } download={`${val.title}_question_image`} className=" w-fit bg-emerald-300 text-emerald-700 gap-2 flex items-center mt-2 px-2 py-1 rounded-md text-xs">
                         <FaDownload />Download Question
                         </Link>
+                        <button onClick={()=>handleDelete(val._id)} className=" bg-red-500 text-white px-5 py-1 font-poppins font-medium text-sm  rounded mt-2">Delete Question</button>
                       </div>
                     </div>
                   );

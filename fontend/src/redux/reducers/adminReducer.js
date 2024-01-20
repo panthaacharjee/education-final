@@ -57,6 +57,18 @@ export const adminTeacherReducer = createReducer(initialState, {
     state.loading = false;
     state.error = action.payload;
   },
+
+  DeleteTeacherRequest: (state) => {
+    state.loading = true;
+  },
+  DeleteTeacherSuccess: (state, action) => {
+    state.loading = false;
+    state.success = action.payload.message;
+  },
+  DeleteTeacherFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
   
   ClearErrors: (state) => {
     state.error = null;
@@ -102,6 +114,19 @@ export const adminStudentReducer = createReducer(initialState, {
     state.loading = false;
     state.error = action.payload;
   },
+
+  DeleteStudentRequest: (state) => {
+    state.loading = true;
+  },
+  DeleteStudentSuccess: (state, action) => {
+    state.loading = false;
+    state.success = action.payload.message;
+  },
+  DeleteStudentFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
+
   ClearErrors: (state) => {
     state.error = null;
   },

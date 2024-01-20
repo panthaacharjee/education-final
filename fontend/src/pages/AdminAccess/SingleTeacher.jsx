@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {  Link, useParams } from "react-router-dom";
-import { getAdminTeacher } from "../../redux/actions/adminAction";
+import { clearError, deleteTeacher, getAdminTeacher } from "../../redux/actions/adminAction";
+import Loader from "../../components/Loading"
+import {toast} from "react-toastify"
+
 
 
 //import Image from "../../assets/Image.jpg"
@@ -13,15 +16,20 @@ const SingleTeacher = () => {
     const {id} = useParams()
 
 
-    const {teacher} = useSelector(state=>state.teacher)
-     console.log(teacher)
+    const {teacher, loading, error} = useSelector(state=>state.teacher)
 
     const [showRoutine, setShowRoutine] = useState(false)
     const [showStatus, setShowStatus] = useState(false)
     const [showResearch, setShowResearch] = useState(false)
 
-    
+    const handleDelete = ()=>{
+      dispatch(deleteTeacher(id))
+    }
     useEffect(()=>{
+      if(error){
+        toast(error)
+      }
+      dispatch(clearError())
         dispatch(getAdminTeacher(id))
     },[])
   return (
@@ -82,6 +90,7 @@ const SingleTeacher = () => {
           <button onClick={()=>setShowStatus(true)} style={{width:"49%"}} className="bg-slate-800  py-1 text-white rounded-lg">Show Status</button>
           <button onClick={()=>setShowResearch(true)} style={{width:"49%"}} className="bg-slate-800  py-1 text-white rounded-lg">Show Research</button>
         </div>
+        <button onClick={handleDelete} className="w-full bg-red-500 text-white px-5 py-2 font-poppins font-medium text-sm  rounded-xl mt-2">{loading? <Loader/>:"Delete Teacher"}</button>
       </div>
     </div>
    {showRoutine &&  <div  className="w-full pt-16 fixed top-0 left-0 h-screen flex items-center justify-center ">

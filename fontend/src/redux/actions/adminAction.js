@@ -156,6 +156,7 @@ export const createQuestion = (userData) => async (dispatch) => {
     dispatch({ type: "CreateQuestionFail", payload: err.response.data.message });
   }
 };
+
 export const getRoutines = (qry) => async (dispatch) => {
   try {
     dispatch({ type: "GetRoutineRequest" });
@@ -163,6 +164,40 @@ export const getRoutines = (qry) => async (dispatch) => {
     dispatch({ type: "GetRoutineSuccess", payload: data.routines });
   } catch (err) {
     dispatch({ type: "GetRoutineFail", payload: err.response.data.message });
+  }
+};
+
+
+
+export const deleteTeacher = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "DeleteTeacherRequest" });
+
+    const { data } = await axios.delete(
+      `/api/v1/delete/teacher/${id}`
+    );
+    dispatch({ type: "DeleteTeacherSuccess", payload: data.message });
+  } catch (err) {
+    dispatch({
+      type: "DeleteTeacherFail",
+      payload: err.response.data.message,
+    });
+  }
+};
+
+export const deleteStudent = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "DeleteStudentRequest" });
+
+    const { data } = await axios.delete(
+      `/api/v1/delete/student/${id}`
+    );
+    dispatch({ type: "DeleteStudentSuccess", payload: data.message });
+  } catch (err) {
+    dispatch({
+      type: "DeleteStudentFail",
+      payload: err.response.data.message,
+    });
   }
 };
 

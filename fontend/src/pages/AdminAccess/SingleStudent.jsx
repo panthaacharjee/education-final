@@ -1,16 +1,25 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getAdminStudent } from "../../redux/actions/adminAction"
+import { clearError, deleteStudent, getAdminStudent } from "../../redux/actions/adminAction"
 import { useParams } from "react-router-dom"
 import img from "../../assets/images/studing.jpg"
+import Loader from "../../components/Loading"
+import {toast} from "react-toastify"
 
 
 const SingleStudent = () => {
     const dispatch = useDispatch()
-    const {student} = useSelector(state=>state.student)
+    const {student, loading, error} = useSelector(state=>state.student)
     const {id} = useParams()
-    console.log(student)
+    
+    const handleDelete=()=>{
+      dispatch(deleteStudent(id))
+    }
     useEffect(()=>{
+      if(error){
+        toast(error)
+      }
+      dispatch(clearError())
         dispatch(getAdminStudent(id))
     },[id])
   return (
@@ -37,8 +46,9 @@ const SingleStudent = () => {
         <div className="my-4">
         <label className="font-poppins font-bold text-sm">Avatar</label>
          
-          {student && student.avatar ? <img src={student.avatar.url} className="w-full h-46 rounded-lg"/>:<img src={img} className="w-full h-46 rounded-lg"/>}
+          {student && student.avatar ? <img src={student.avatar.url} className="w-full h-44 rounded-lg"/>:<img src={img} className="w-full h-46 rounded-lg"/>}
         </div>
+        <button onClick={handleDelete} className="w-full bg-red-500 text-white px-5 py-2 font-poppins font-medium text-sm  rounded-xl mt-2">{loading? <Loader/>:"Delete Student"}</button>
       </div>
     </div>
   )

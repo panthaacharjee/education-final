@@ -62,6 +62,26 @@ exports.getStudents = catchAsyncError(async (req, res, next) => {
     });
   });
 
+
+  /* ==============================================================
+      Delete Student (/api/v1/delete/student/:id) (req : Delete)
+   ============================================================== */
+   exports.deleteStudent = catchAsyncError(async (req, res, next) => {
+    const student = await Student.findById(req.params.id);
+  
+    if (!student) {
+      return next(new ErrorHandler("Student Not Found!", 404));
+    }
+
+    
+    await Student.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      success: true,
+      message:"Successfully Student Deleted"
+    });
+  });
+
+
 /* ==============================================================
       Register Teacher (/api/v1/register/teacher) (req : POST)
    ============================================================== */
@@ -100,6 +120,24 @@ exports.getTeachers = catchAsyncError(async (req, res, next) => {
     res.status(200).json({
       success: true,
       teacher,
+    });
+  });
+
+    /* ==============================================================
+      Delete Teacher (/api/v1/delete/teacher/:id) (req : Delete)
+   ============================================================== */
+   exports.deleteTeacher = catchAsyncError(async (req, res, next) => {
+    const teacher = await Teacher.findById(req.params.id);
+  
+    if (!teacher) {
+      return next(new ErrorHandler("Teacher Not Found!", 404));
+    }
+
+    
+    await Teacher.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      success: true,
+      message:"Successfully Teacher Deleted"
     });
   });
 
@@ -155,6 +193,24 @@ exports.createQuestion = catchAsyncError(async (req, res, next) => {
     });
   });
   
+
+/* ==============================================================
+      Delete Question (/api/v1/delete/question/:id) (req : Delete)
+   ============================================================== */
+   exports.deleteQuestion = catchAsyncError(async (req, res, next) => {
+    const question = await Question.findById(req.params.id);
+  
+    if (!question) {
+      return next(new ErrorHandler("Question Not Found!", 404));
+    }
+
+    
+    await Question.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      success: true,
+      message:"Successfully Question Deleted"
+    });
+  });
 /* ==============================================================
       Create Routine (/api/v1/create/routine) (req : POST)
    ============================================================== */

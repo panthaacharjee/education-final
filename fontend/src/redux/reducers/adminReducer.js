@@ -159,6 +159,18 @@ export const adminRoutineReducer = createReducer(initialState, {
     state.loading = false;
     state.error = action.payload;
   },
+
+  DeleteRoutineRequest: (state) => {
+    state.loading = true;
+  },
+  DeleteRoutineSuccess: (state, action) => {
+    state.loading = false;
+    state.success = action.payload.message;
+  },
+  DeleteRoutineFail: (state, action) => {
+    state.loading = false;
+    state.error = action.payload;
+  },
   CreateQuestionRequest: (state) => {
     state.loading = true;
   },

@@ -287,3 +287,22 @@ exports.getRoutines = catchAsyncError(async (req, res, next) => {
       message:"Successfully Routine Updated"
     });
   });
+
+
+  /* ==============================================================
+      Delete Routine (/api/v1/delete/routine/:id) (req : Delete)
+   ============================================================== */
+   exports.deleteRoutine = catchAsyncError(async (req, res, next) => {
+    const routine = await Routine.findById(req.params.id);
+  
+    if (!routine) {
+      return next(new ErrorHandler("Routine Not Found!", 404));
+    }
+
+    
+    await Routine.findByIdAndDelete(req.params.id);
+    res.status(200).json({
+      success: true,
+      message:"Successfully Routine Deleted"
+    });
+  });

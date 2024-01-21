@@ -218,6 +218,22 @@ export const deleteQuestion = (id) => async (dispatch) => {
   }
 };
 
+export const deleteRoutine= (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "DeleteRoutineRequest" });
+
+    const { data } = await axios.delete(
+      `/api/v1/delete/routine/${id}`
+    );
+    dispatch({ type: "DeleteRoutineSuccess", payload: data.message });
+  } catch (err) {
+    dispatch({
+      type: "DeleteRoutineFail",
+      payload: err.response.data.message,
+    });
+  }
+};
+
 //Clearing Errors
 export const clearError = () => async (dispatch) => {
   dispatch({ type: "ClearErrors" });

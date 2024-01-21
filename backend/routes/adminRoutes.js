@@ -17,6 +17,7 @@ const {
   deleteTeacher,
   deleteStudent,
   deleteQuestion,
+  deleteRoutine,
 } = require("../controllers/adminControllers");
 
 //Routes
@@ -53,6 +54,7 @@ router.route("/student/:id").get(getStudent);
 router.route("/delete/student/:id").delete(deleteStudent);
 
 router.route("/delete/question/:id").delete(deleteQuestion);
+router.route("/delete/routine/:id").delete(deleteRoutine);
 
 
 router.route("/all/routine").get(getRoutines);

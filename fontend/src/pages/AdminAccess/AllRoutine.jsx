@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaSearch } from "react-icons/fa";
-import { getRoutines } from "../../redux/actions/adminAction";
+import { deleteRoutine, getRoutines } from "../../redux/actions/adminAction";
 
 const AllRoutine = () => {
   const dispatch = useDispatch();
@@ -11,6 +11,12 @@ const AllRoutine = () => {
   const handleSubmit = () => {
     dispatch(getRoutines(qry));
   };
+
+
+  
+  const handleDelete =(id)=>{
+    dispatch(deleteRoutine(id))
+  }
   useEffect(() => {
     dispatch(getRoutines(qry));
   }, []);
@@ -72,7 +78,8 @@ const AllRoutine = () => {
                           </p>
                           <p>Section : {val.section}</p>
                           <p>Day : {val.day}</p>
-
+                          <button onClick={()=>handleDelete(val._id)} className=" bg-red-500 text-white px-5 py-1 font-poppins font-medium text-sm  rounded mt-2">Delete Question</button>
+                          
                         </div>
                       </div>
                     </div>
